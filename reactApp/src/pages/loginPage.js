@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useAuth } from '../contexts/authContext'
+import React, { useRef, useState, useContext } from "react";
+import { AuthContext } from '../contexts/authContext'
 import {Alert} from "react-bootstrap"
 import { Link, useHistory } from "react-router-dom"
 import "./forms.css";
@@ -7,7 +7,15 @@ import "./forms.css";
 export default function Login(){
    const emailRef = useRef()
    const passwordRef = useRef()
-   const {login} = useAuth()
+
+
+
+
+  //  const {login} = useAuth()
+  const context = useContext(AuthContext)
+
+
+
    const [error, setError] = useState('')
    const [loading, setLoading] = useState(false)
    const history = useHistory()
@@ -18,7 +26,13 @@ export default function Login(){
     try{
       setError('')
       setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
+
+
+
+      // await login(emailRef.current.value, passwordRef.current.value)
+      await context.authenticate(emailRef.current.value, passwordRef.current.value);
+
+
       history.push('/')
     }catch{
       setError('Failed to sign in')
@@ -36,7 +50,7 @@ export default function Login(){
        </h3> 
       
        <div className="form-group">
-        <input className="form-control" type="email" placeholder="Email" name="email" ref={emailRef} autoFocus required />
+        <input className="form-control" type="text" placeholder="Email" name="email" ref={emailRef} autoFocus required />
        </div>
        <div className="form-group">
         <input className="form-control" type="password" placeholder="Password" name="password" ref={passwordRef} required />

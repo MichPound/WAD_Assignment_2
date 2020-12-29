@@ -18,7 +18,7 @@ import NowPlayingPage from './pages/nowPlayingPage'
 import Signup from './pages/signupPage'
 import LoginPage from './pages/loginPage'
 import "./main.css";
-import { AuthProvider } from "./contexts/authContext"
+import AuthProvider from "./contexts/authContext"
 import PrivateRoute from "./privateRoute"
 
 

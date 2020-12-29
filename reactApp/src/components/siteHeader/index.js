@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
 
-import { useAuth } from "../../contexts/authContext"
+import { AuthContext } from "../../contexts/authContext"
 
 const SiteHeader = () => {
 
-  const {currentUser, signout} = useAuth();
+  // const {currentUser, signout} = useAuth();
+  const context = useContext(AuthContext);
 
   async function handleLogout() {
-      await signout()
+      // await signout()
+      await context.signout()
   }
 
   return (
@@ -28,8 +30,8 @@ const SiteHeader = () => {
       />
      
       <span className="navbar-text text-light">
-          {"Users Email: "}
-          {currentUser ? currentUser.email : "Not Logged In"}
+          {"User: "}
+          {context.isAuthenticated ? context.userName : "Not Logged In"}
       </span>
      
       <FontAwesomeIcon
@@ -77,8 +79,8 @@ const SiteHeader = () => {
           </li>
 
           <li className="nav-item">
-           <button onClick={currentUser ? handleLogout : <Redirect to = "/login" />} className="btn logButton">
-              {currentUser ? "logout" : "login"}
+           <button onClick={context.isAuthenticated ? handleLogout : <Redirect to = "/login" />} className="btn logButton">
+              {context.isAuthenticated ? "logout" : "login"}
            </button> 
           </li>
 
