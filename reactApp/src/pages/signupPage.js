@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./forms.css";
 
 export default function Signup(){
-   const emailRef = useRef()
+   const nameRef = useRef()
    const passwordRef = useRef()
    const passwordConfirmRef = useRef()
 
@@ -34,7 +34,7 @@ export default function Signup(){
 
 
       // await register(emailRef.current.value, passwordRef.current.value)
-      await context.register(emailRef.current.value, passwordRef.current.value);
+      await context.register(nameRef.current.value, passwordRef.current.value);
 
 
 
@@ -55,7 +55,7 @@ export default function Signup(){
        </h3> 
       
        <div className="form-group">
-        <input className="form-control" type="email" placeholder="Email" name="email" ref={emailRef} autoFocus required />
+        <input className="form-control" type="text" placeholder="Name" name="name" ref={nameRef} autoFocus required />
        </div>
        <div className="form-group">
         <input className="form-control" type="password" placeholder="Password" name="password" ref={passwordRef} required />

@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./forms.css";
 
 export default function Login(){
-   const emailRef = useRef()
+   const nameRef = useRef()
    const passwordRef = useRef()
 
 
@@ -30,7 +30,7 @@ export default function Login(){
 
 
       // await login(emailRef.current.value, passwordRef.current.value)
-      await context.authenticate(emailRef.current.value, passwordRef.current.value);
+      await context.authenticate(nameRef.current.value, passwordRef.current.value);
 
 
       history.push('/')
@@ -50,7 +50,7 @@ export default function Login(){
        </h3> 
       
        <div className="form-group">
-        <input className="form-control" type="text" placeholder="Email" name="email" ref={emailRef} autoFocus required />
+        <input className="form-control" type="text" placeholder="Name" name="namre" ref={nameRef} autoFocus required />
        </div>
        <div className="form-group">
         <input className="form-control" type="password" placeholder="Password" name="password" ref={passwordRef} required />
