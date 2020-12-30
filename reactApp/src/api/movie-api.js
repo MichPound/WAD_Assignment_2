@@ -28,9 +28,7 @@ export const getMovies = () => {
   };
 
   export const getMovie = id => {
-
-
-
+    //...............................................................................................
     try {
       return fetch(
         `/api/movies/${id}`,{headers: {
@@ -46,7 +44,7 @@ export const getMovies = () => {
     }
     ).then(res => res.json());
     }
-    
+    //...............................................................................................
   };
 
   export const getPopularMovies = () => {
@@ -56,4 +54,13 @@ export const getMovies = () => {
     }
   }
   ).then(res => res.json());
+};
+
+export const getUpcomingMovies = () => {
+  return fetch(
+    `/api/upcomingMovies`,{headers: {
+     'Authorization': window.localStorage.getItem('token')
+  }
+}
+).then(res => res.json());
 };
