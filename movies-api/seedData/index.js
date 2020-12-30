@@ -1,6 +1,8 @@
 import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
+import popularMovieModel from '../api/popularMovies/popularMovieModel';
 import {movies} from './movies.js';
+import {popularMovies} from './popularMovies';
 
 const users = [
   {
@@ -35,5 +37,17 @@ export async function loadMovies() {
     console.info(`${movies.length} Movies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load movie Data: ${err}`);
+  }
+}
+
+export async function loadPopularMovies() {
+  console.log('load seed data');
+  console.log(popularMovies.length);
+  try {
+    await popularMovieModel.deleteMany();
+    await popularMovieModel.collection.insertMany(popularMovies);
+    console.info(`${popularMovies.length} Popular Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load Popular movie Data: ${err}`);
   }
 }

@@ -31,11 +31,11 @@ export default ({ movie }) => {
         <li key="gh" className="list-group-item list-group-item-dark">
           Genres
         </li>
-        {movie.genres.map(g => (
+        {/* {movie.genres.map(g => (
           <li key={g.name} className="list-group-item">
             {g.name}
           </li>
-        ))}
+        ))} */}
       </ul>
       <ul className="list-group list-group-horizontal">
         <li key="slh" className="list-group-item list-group-item-dark">
@@ -51,11 +51,11 @@ export default ({ movie }) => {
         <li key="pch" className="list-group-item list-group-item-dark">
           Production Companies
         </li>
-        {movie.production_companies.map(pc => (
+        {/* {movie.production_companies.map(pc => (
           <li key={pc.name} className="list-group-item">
             {pc.name}
           </li>
-        ))}
+        ))} */}
       </ul>
       <ul className="list-group list-group-horizontal">
         <li key="pch" className="list-group-item list-group-item-dark">

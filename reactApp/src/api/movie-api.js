@@ -20,9 +20,40 @@ export const signup = (username, password) => {
 
 export const getMovies = () => {
     return fetch(
-       '/api/movies',{headers: {
+        `/api/movies`,{headers: {
          'Authorization': window.localStorage.getItem('token')
       }
     }
     ).then(res => res.json());
   };
+
+  export const getMovie = id => {
+
+
+
+    try {
+      return fetch(
+        `/api/movies/${id}`,{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+    } catch (error) {
+      return fetch(
+        `/api/popularMovies/${id}`,{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+    }
+    
+  };
+
+  export const getPopularMovies = () => {
+    return fetch(
+      `/api/popularMovies`,{headers: {
+       'Authorization': window.localStorage.getItem('token')
+    }
+  }
+  ).then(res => res.json());
+};
