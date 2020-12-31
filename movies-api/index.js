@@ -4,11 +4,12 @@ import express from 'express';
 import moviesRouter from './api/movies';
 import popularMoviesRouter from './api/popularMovies';
 import upcomingMoviesRouter from './api/upcomingMovies';
+import nowPlayingMoviesRouter from './api/nowPlayingMovies';
 import genresRouter from './api/genres';
 import bodyParser from 'body-parser';
 import usersRouter from './api/users';
 import session from 'express-session';
-import {loadUsers, loadMovies, loadPopularMovies, loadUpcomingMovies} from './seedData';
+import {loadUsers, loadMovies, loadPopularMovies, loadUpcomingMovies, loadNowPlayingMovies} from './seedData';
 import passport from './authenticate';
 
 dotenv.config();
@@ -18,6 +19,7 @@ if (process.env.SEED_DB) {
   loadMovies();
   loadPopularMovies();
   loadUpcomingMovies();
+  loadNowPlayingMovies();
 }
 
 const errHandler = (err, req, res, next) => {
@@ -57,6 +59,8 @@ app.use('/api/popularMovies', passport.authenticate('jwt', {session: false}), po
 app.use('/api/popularMovies/:id', passport.authenticate('jwt', {session: false}), popularMoviesRouter);
 app.use('/api/upcomingMovies', passport.authenticate('jwt', {session: false}), upcomingMoviesRouter);
 app.use('/api/upcomingMovies/:id', passport.authenticate('jwt', {session: false}), upcomingMoviesRouter);
+app.use('/api/nowPlayingMovies', passport.authenticate('jwt', {session: false}), nowPlayingMoviesRouter);
+app.use('/api/nowPlayingMovies/:id', passport.authenticate('jwt', {session: false}), nowPlayingMoviesRouter);
 // app.use('/api/movies', authenticate, moviesRouter);
 app.use(errHandler);
 

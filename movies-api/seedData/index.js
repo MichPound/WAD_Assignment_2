@@ -2,9 +2,11 @@ import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
 import popularMovieModel from '../api/popularMovies/popularMovieModel';
 import upcomingmovieModel from '../api/upcomingMovies/upcomingMovieModel';
+import nowPlayingMovieModel from '../api/nowPlayingMovies/nowPlayingMovieModel';
 import {movies} from './movies.js';
 import {popularMovies} from './popularMovies';
 import {upcomingMovies} from './upcomingMovies';
+import {nowPlayingMovies} from './nowPlayingMovies';
 
 const users = [
   {
@@ -63,5 +65,17 @@ export async function loadUpcomingMovies() {
     console.info(`${upcomingMovies.length} Upcoming Movies were successfully stored.`);
   } catch (err) {
     console.error(`failed to Load Upcoming movie Data: ${err}`);
+  }
+}
+
+export async function loadNowPlayingMovies() {
+  console.log('load seed data');
+  console.log(nowPlayingMovies.length);
+  try {
+    await nowPlayingMovieModel.deleteMany();
+    await nowPlayingMovieModel.collection.insertMany(nowPlayingMovies);
+    console.info(`${nowPlayingMovies.length} Now Playing Movies were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load Now Playing movie Data: ${err}`);
   }
 }
