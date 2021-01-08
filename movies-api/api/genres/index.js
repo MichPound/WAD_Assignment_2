@@ -5,7 +5,7 @@ import {
 
 const router = express.Router();
 
-router.get('/genres', (req, res, next) => {
+router.get('/', (req, res, next) => {
   const id = parseInt(req.params.id);
   getGenres(id)
   .then(genres => res.status(200).send(genres))

@@ -1,13 +1,5 @@
 import fetch from 'node-fetch';
 
-// export const getMovies = () => {
-//     return fetch(
-//       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&page=1`
-//     )
-//       .then(res => res.json())
-//       .then(json => json.results);
-//   };
-
   // export const getMovie = id => {
   //   return fetch(
   //     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}`
@@ -29,10 +21,18 @@ import fetch from 'node-fetch';
       .then(json => json.results);
   };
 
-  // export const getPopularMovies = () => {
-  //   return fetch(
-  //     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=2`
-  //   )
-  //     .then(res => res.json())
-  //     .then(json => json.results);
-  // };
+  export const getMovieCredits = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.cast);
+  };
+
+  export const getSimilarMovies = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };

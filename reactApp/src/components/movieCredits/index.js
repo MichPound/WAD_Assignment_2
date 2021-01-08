@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMovieCredits } from "../../api/tmdb-api";
+import { getMovieCredits } from "../../api/movie-api";
 import "./credits.css";
 
 const MovieCredits = ({ movie }) => {

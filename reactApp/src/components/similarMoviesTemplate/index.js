@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getSimilarMovies } from "../../api/tmdb-api";
+import { getSimilarMovies } from "../../api/movie-api";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./similar.css";
