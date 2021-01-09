@@ -48,7 +48,7 @@
 // }
 
 import React, { useState, createContext } from "react";
-import { login, signup } from "../api/movie-api"
+import { login, signup, addFavorite, getFavorites } from "../api/movie-api"
 
 export const AuthContext = createContext(null);
 
@@ -75,11 +75,23 @@ const AuthProvider = (props) => {
   const register = async (username, password) => {
     const result = await signup(username, password);
     console.log(result.code);
-    return (result.code == 201) ? true : false;
+    return (result.code === 201) ? true : false;
   };
 
   const signout = () => {
     setTimeout(() => setIsAuthenticated(false), 100);
+  }
+
+  const addToFavorites = async (userName, id) => {
+    const result = await addFavorite(userName, id);
+    console.log(result.code);
+    return (result.code === 201) ? true : false;
+  };
+
+  const getFavoriteMovies = async (userName) => {
+    const result = await getFavorites(userName);
+    console.log(result.code);
+    return (result.code === 21) ? true : false;
   }
 
   return (
@@ -89,6 +101,8 @@ const AuthProvider = (props) => {
         authenticate,
         register,
         signout,
+        addToFavorites,
+        getFavoriteMovies,
         userName
       }}
     >
@@ -96,5 +110,6 @@ const AuthProvider = (props) => {
     </AuthContext.Provider>
   );
 };
+
 
 export default AuthProvider;
