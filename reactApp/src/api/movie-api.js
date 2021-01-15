@@ -32,7 +32,7 @@ export const getFavorites = userName => {
   return fetch(
     `/api/users/${userName}/favourites`,{headers: {
       'Authorization': window.localStorage.getItem('token')
-    }
+    },method: 'get',
   }
   ).then(res => res.json());
 };
@@ -128,3 +128,7 @@ export const getSimilarMovies = id => {
   }
   ).then(res => res.json())
 };
+
+//move similar to pop
+//fix get details
+//remove reviews from each
