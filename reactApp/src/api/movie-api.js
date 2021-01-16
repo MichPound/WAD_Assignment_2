@@ -32,7 +32,7 @@ export const getFavorites = userName => {
   return fetch(
     `/api/users/${userName}/favourites`,{headers: {
       'Authorization': window.localStorage.getItem('token')
-    },method: 'get',
+    }
   }
   ).then(res => res.json());
 };

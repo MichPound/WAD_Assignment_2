@@ -89,9 +89,11 @@ const AuthProvider = (props) => {
   };
 
   const getFavoriteMovies = async (userName) => {
-    const result = await getFavorites(userName);
-    console.log(result.code);
-    return (result.code === 21) ? true : false;
+    // const result = await getFavorites(userName);
+    // console.log(result.code);
+    // return (result.code === 21) ? true : false;
+    const movies = await getFavorites(userName);
+    return(movies);
   }
 
   return (
