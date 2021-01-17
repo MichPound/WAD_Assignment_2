@@ -1,11 +1,9 @@
 import React, {useContext, useState} from "react";
 import MovieListPageTemplate from "../components/templateMovieListPage";
 import AddReviewButton from '../components/buttons/addReview'
-// import {MoviesContext} from '../contexts/moviesContext'
 import {AuthContext} from '../contexts/authContext'
 
 const FavoriteMoviesPage = () => {
-  // const context = useContext(MoviesContext);
   const authContext = useContext(AuthContext);
   const userName = authContext.userName;
   const [favorites, setLoadedFavorites] = useState([]);

@@ -8,13 +8,8 @@ export default function Signup(){
    const nameRef = useRef()
    const passwordRef = useRef()
    const passwordConfirmRef = useRef()
-
-
-
-  //  const {register} = useAuth()
-  const context = useContext(AuthContext)
-
-
+   //  const {register} = useAuth()
+   const context = useContext(AuthContext)
    const [error, setError] = useState('')
    const [loading, setLoading] = useState(false)
    const history = useHistory()
@@ -29,16 +24,8 @@ export default function Signup(){
     try{
       setError('')
       setLoading(true)
-
-
-
-
       // await register(emailRef.current.value, passwordRef.current.value)
       await context.register(nameRef.current.value, passwordRef.current.value);
-
-
-
-
       history.push("/login")
     }catch{
       setError('Failed to create account')

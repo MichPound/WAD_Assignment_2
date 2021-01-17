@@ -7,15 +7,8 @@ import "./forms.css";
 export default function Login(){
    const nameRef = useRef()
    const passwordRef = useRef()
-
-
-
-
-  //  const {login} = useAuth()
-  const context = useContext(AuthContext)
-
-
-
+   //  const {login} = useAuth()
+   const context = useContext(AuthContext)
    const [error, setError] = useState('')
    const [loading, setLoading] = useState(false)
    const history = useHistory()
@@ -26,13 +19,8 @@ export default function Login(){
     try{
       setError('')
       setLoading(true)
-
-
-
       // await login(emailRef.current.value, passwordRef.current.value)
       await context.authenticate(nameRef.current.value, passwordRef.current.value);
-
-
       history.push('/')
     }catch{
       setError('Failed to sign in')

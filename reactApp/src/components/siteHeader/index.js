@@ -8,11 +8,9 @@ import { AuthContext } from "../../contexts/authContext"
 
 const SiteHeader = () => {
 
-  // const {currentUser, signout} = useAuth();
   const context = useContext(AuthContext);
 
   async function handleLogout() {
-      // await signout()
       await context.signout()
   }
 

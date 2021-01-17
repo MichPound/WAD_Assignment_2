@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import {getMovie} from '../api/tmdb-api'
 import {getMovie} from "../api/movie-api"
 
 const useMovie = id => {

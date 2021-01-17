@@ -52,16 +52,11 @@ app.use(express.static('public'));
 
 app.use('/api/users', usersRouter);
 app.use('/api/genres', genresRouter);
-// Add passport.authenticate(..)  to middleware stack for protected routes
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/movies/:id', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/popularMovies', passport.authenticate('jwt', {session: false}), popularMoviesRouter);
-app.use('/api/popularMovies/:id', passport.authenticate('jwt', {session: false}), popularMoviesRouter);
 app.use('/api/upcomingMovies', passport.authenticate('jwt', {session: false}), upcomingMoviesRouter);
-app.use('/api/upcomingMovies/:id', passport.authenticate('jwt', {session: false}), upcomingMoviesRouter);
 app.use('/api/nowPlayingMovies', passport.authenticate('jwt', {session: false}), nowPlayingMoviesRouter);
-app.use('/api/nowPlayingMovies/:id', passport.authenticate('jwt', {session: false}), nowPlayingMoviesRouter);
-// app.use('/api/movies', authenticate, moviesRouter);
 app.use(errHandler);
 
 
