@@ -4,6 +4,7 @@ Name: Michael Pound, 20085540
 
 Predecessor to this assignment can be found [here](https://github.com/MichPound/WAD_Assignment_1).
 
+For a full display of all views please look at the predecessor of this assignment, its readme has desciptions of all views.
 
 ## Features.
  
@@ -109,30 +110,101 @@ This application uses passport with sessions to authenticate users. The user wil
  + /movies/:id (private) - Displays movie details for a selected movie if user is logged in.
  + / (private) - Displays home page of app.
 
+![][routes]
+
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
+To integrate my previous assignments react app with this assignments API I did the following. I first started by adding all the new paths, models and seed data to my API for all the sections from my react app that used TMDB-API. To implenment the authentication within the react app thankfully I did not have to do a lot, all I had to do was update the authentication context which was using firebase and that was it as I had used firebase in such a way that it made it easy to implement other authentication easily. The final stage was getting rid of all the TMDB calls from the react app and rewritting them to use the API running locally on port 8085. Some of the API calls are shown below.
 
+ + Authentication API Calls
 ~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
-    }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
+export const login = (username, password) => {
+    return fetch('/api/users', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
 };
 
+export const signup = (username, password) => {
+    return fetch('/api/users?action=register', {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password })
+    }).then(res => res.json())
+};
+~~~
+
+ + Sample Favourite API Calls
+~~~Javascript
+export const addFavorite = (userName, id) => {
+  return fetch(`/api/users/${userName}/favourites`, {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify({ userName: userName, id: id })
+}).then(res => res.json())
+};
+
+export const getFavorites = userName => {
+  return fetch(
+    `/api/users/${userName}/favourites`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }
+  }
+  ).then(res => res.json());
+};
+~~~
+
++ Basic Movie API Calls
+~~~Javascript
+export const getMovies = () => {
+    return fetch(
+        `/api/movies`,{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+export const getMovie = id => {
+      return fetch(
+        `/api/movies/${id}`,{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
+  };
+
+export const getMovieCredits = id => {
+    return fetch(
+      `/api/movies/${id}/credits`,{headers: {
+       'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
+  };
+
+export const getMovieReviews = id => {
+    return fetch(
+      `/api/movies/${id}/reviews`,{headers: {
+       'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
+  };
 ~~~
 
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
+Beyond the basic movie app from the labs this has all the functionality of my first assignment. Multiple different types of movies are displayed, favourites and watchlists also work but this time they are also added to the user in a mongo collection. It has the full login, register and logout from the labs. This can be switched to firebase with the code included, the reason I dont have this as standard is because I couldnt get it working with mongo so I comented it out and used the basic authentication from the labs. This firebase authentication can be seen in use in my first assignment listed at the beginning of this read me.
 
 ## Independent learning.
-
 
 The only content in this assingment that was not covered in the labs is the authentication using Firebase. This means user have to sign up to be able to access any view besides the signup and register views. Firebase handles the data for all users signed up to the movie app.
 
@@ -147,3 +219,4 @@ The only content in this assingment that was not covered in the labs is the auth
 ---------------------------------
 
 [fireBase]: ./public/fireBase.png
+[routes]: ./public/routes.png
