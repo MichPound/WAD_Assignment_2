@@ -141,13 +141,9 @@ export const getNowPlayingMovies = () => {
 
 export const getSimilarMovies = id => {
   return fetch(
-    `/api/movies/${id}/similarMovies`,{headers: {
+    `/api/popularMovies/${id}/similarMovies`,{headers: {
      'Authorization': window.localStorage.getItem('token')
     }
   }
   ).then(res => res.json())
 };
-
-//move similar to pop
-//fix get details
-//remove reviews from each
