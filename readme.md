@@ -3,6 +3,7 @@
 Name: Michael Pound, 20085540
 
 Predecessor to this assignment can be found [here](https://github.com/MichPound/WAD_Assignment_1).
+Basic video explantion on the application [here](https://youtu.be/F2qrM2g2iYU).
 
 For a full display of all views please look at the predecessor of this assignment, its readme has desciptions of all views.
 
@@ -15,10 +16,10 @@ For a full display of all views please look at the predecessor of this assignmen
  + Feature 5 - Movie reviews, credits and details are handled through the API
 
 ## Installation Requirements
-# To clone my repository use:
+### To clone my repository use:
  + git clone https://github.com/MichPound/WAD_Assignment_2
 
-# Installation commands used during this assignment:
+### Installation commands used during this assignment:
  + npm i --save bootstrap@4.4.1        
  + npm i --save-dev babel-cli      
  + npm i --save-dev babel-preset-env      
