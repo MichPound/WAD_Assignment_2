@@ -48,7 +48,7 @@
 // }
 
 import React, { useState, createContext } from "react";
-import { login, signup, addFavorite, getFavorites } from "../api/movie-api"
+import { login, signup, addFavorite, getFavorites, addWatchList, getWatchList } from "../api/movie-api"
 
 export const AuthContext = createContext(null);
 
@@ -89,10 +89,19 @@ const AuthProvider = (props) => {
   };
 
   const getFavoriteMovies = async (userName) => {
-    // const result = await getFavorites(userName);
-    // console.log(result.code);
-    // return (result.code === 21) ? true : false;
     const movies = await getFavorites(userName);
+    return(movies);
+  }
+
+  const addToWatchList = async (userName, id) => {
+    const result = await addWatchList(userName, id);
+    console.log(result.code);
+    return (result.code === 201) ? true : false;
+  };
+
+  const getWatchListMovies = async (userName) => {
+    const movies = await getWatchList(userName);
+    console.log(movies);
     return(movies);
   }
 
@@ -105,6 +114,8 @@ const AuthProvider = (props) => {
         signout,
         addToFavorites,
         getFavoriteMovies,
+        addToWatchList,
+        getWatchListMovies,
         userName
       }}
     >

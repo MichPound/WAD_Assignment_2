@@ -69,13 +69,6 @@ router.post('/:userName/favourites', async (req, res, next) => {
   res.status(201).json(user); 
 });
 
-  // router.get('/:userName/favourites', (req, res, next) => {
-  //   const user = req.params.userName;
-  //   User.find( {username: user}).then(
-  //       user => res.status(201).send(user.favourites)
-  //   ).catch(next);
-  // });
-
   router.get('/:userName/favourites', (req, res, next) => {
     const userName = req.params.userName;
     User.findByUserName(userName).populate('favourites').then(
@@ -83,5 +76,21 @@ router.post('/:userName/favourites', async (req, res, next) => {
     ).catch(next);
   });
   
+  router.post('/:userName/watchList', async (req, res, next) => {
+    const newFavourite = req.body.id;
+    const userName = req.params.userName;
+    const movie = await movieModel.findByMovieDBId(newFavourite);
+    const user = await User.findByUserName(userName);
+    await user.watchList.push(movie._id);
+    await user.save(); 
+    res.status(201).json(user); 
+  });
+  
+    router.get('/:userName/watchList', (req, res, next) => {
+      const userName = req.params.userName;
+      User.findByUserName(userName).populate('watchList').then(
+        user => res.status(201).json(user.watchList)
+      ).catch(next);
+    });
 
 export default router;

@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 
-  // export const getMovie = id => {
-  //   return fetch(
-  //     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}`
-  //   ).then(res => res.json());
-  // };
+  export const getMovie = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}`
+    ).then(res => res.json());
+  };
 
   export const getGenres = () => {
     return fetch(

@@ -37,6 +37,25 @@ export const getFavorites = userName => {
   ).then(res => res.json());
 };
 
+export const addWatchList = (userName, id) => {
+  return fetch(`/api/users/${userName}/watchList`, {
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    method: 'post',
+    body: JSON.stringify({ userName: userName, id: id })
+}).then(res => res.json())
+};
+
+export const getWatchList = userName => {
+  return fetch(
+    `/api/users/${userName}/watchList`,{headers: {
+      'Authorization': window.localStorage.getItem('token')
+    }
+  }
+  ).then(res => res.json());
+};
+
  export const getGenres = () => {
   return fetch(
       `/api/genres`,{headers: {

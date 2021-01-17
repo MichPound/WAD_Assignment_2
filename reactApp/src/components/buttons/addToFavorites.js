@@ -13,7 +13,6 @@ const AddToFavoriteButton = ({ movie }) => {
     e.preventDefault();
     // context.addToFavorites(movie.id);
     context.addToFavorites(userName, movie.id);
-    console.log(context.getFavoriteMovies(userName));
   };
 
   return (
