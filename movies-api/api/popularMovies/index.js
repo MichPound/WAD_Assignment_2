@@ -8,10 +8,10 @@ router.get('/', (req, res, next) => {
   popularMovieModel.find().then(popularMovies => res.status(200).send(popularMovies)).catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  const id = parseInt(req.params.id);
-  popularMovieModel.findByMovieDBId(id).then(popularMovies => res.status(200).send(popularMovies)).catch(next);
-});
+// router.get('/:id', (req, res, next) => {
+//   const id = parseInt(req.params.id);
+//   popularMovieModel.findByMovieDBId(id).then(popularMovies => res.status(200).send(popularMovies)).catch(next);
+// });
 
 router.get('/:id/similarMovies', (req, res, next) => {
   const id = parseInt(req.params.id);
