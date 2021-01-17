@@ -14,7 +14,7 @@ Predecessor to this assignment can be found [here](https://github.com/MichPound/
  + Feature 5 - Movie reviews, credits and details are handled through the API
 
 ## Installation Requirements
-# To clone mt repository use:
+# To clone my repository use:
  + git clone https://github.com/MichPound/WAD_Assignment_2
 
 # Installation commands used during this assignment:
@@ -74,7 +74,6 @@ export default app
 ```
 
 ## API Design
-Give an overview of your web API design, perhaps similar to the following: 
 
 |  |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
@@ -94,7 +93,21 @@ Give an overview of your web API design, perhaps similar to the following:
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+This application uses passport with sessions to authenticate users. The user will have to register an account with a name and password. This will then be stored in mongo using a modified schema for users giving them both favourites and wacthlists. Once the user has registered they will be able to login, if the user is not loged in they can only view the login and register pages, once they are logged in they can see all pages.
+
+ + /login (public) - Displays login page for existing users to log in.
+ + /signup (public) - Displays signup page for users who do not have accounts yet.
+
+ + /reviews/form (private) - Displays review form for a selected movie if user is logged in.
+ + /reviews/:id (private) - Displays full review for a selected movie if user is logged in.
+ + /movies/favorites (private) - Displays the users favourite movies  if user is logged in.
+ + /movies/upcoming (private) - Displays upcoming movies  if user is logged in.
+ + /movies/:id/similar (private) - Displays similar movies for a selected movie if user is logged in.
+ + /movies/popular (private) - Displays popular movies if user is logged in.
+ + /movies/now_playing (private) - Displays now playing movies if user is logged in.
+ + /watchList (private) - Displays the users watch list if user is logged in.
+ + /movies/:id (private) - Displays movie details for a selected movie if user is logged in.
+ + / (private) - Displays home page of app.
 
 ## Integrating with React App
 
@@ -120,4 +133,17 @@ export const getMovies = () => {
 
 ## Independent learning.
 
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+
+The only content in this assingment that was not covered in the labs is the authentication using Firebase. This means user have to sign up to be able to access any view besides the signup and register views. Firebase handles the data for all users signed up to the movie app.
+
+![][fireBase]
+
+### Sites used for implementing authentication using Firebase: 
++ https://react-firebase-js.com/docs/react-firebase-auth/getting-started
++ https://blog.logrocket.com/user-authentication-firebase-react-apps/
++ https://www.youtube.com/watch?v=PKwu15ldZ7k
++ https://levelup.gitconnected.com/authentication-using-firebase-and-react-js-99392c6fa58b
+
+---------------------------------
+
+[fireBase]: ./public/fireBase.png
